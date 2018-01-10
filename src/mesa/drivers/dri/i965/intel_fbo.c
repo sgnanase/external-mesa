@@ -1026,7 +1026,8 @@ brw_cache_flush_for_read(struct brw_context *brw, struct brw_bo *bo)
 void
 brw_cache_flush_for_render(struct brw_context *brw, struct brw_bo *bo)
 {
-   if (_mesa_set_search(brw->depth_cache, bo))
+   if (_mesa_set_search(brw->render_cache, bo) ||
+       _mesa_set_search(brw->depth_cache, bo))
       flush_depth_and_render_caches(brw, bo);
 }
 
